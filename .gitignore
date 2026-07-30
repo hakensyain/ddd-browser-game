@@ -1,0 +1,43 @@
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs, caches, and temporary or backup files
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak
+*.old
+*.orig
+
+# Local environment files and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependency and test output
+node_modules/
+.cache/
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Local Codex verification output
+.codex/
+.codex-*/
+verification/
+
+# Unreferenced development screenshots bundled beside the game
+hideout/
