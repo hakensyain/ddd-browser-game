@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ダンジョンダイスクロニクル</title>
     <link rel="icon" type="image/png" href="./assets/images/ui/ddd_app_icon.png">
-  <script type="module" crossorigin src="./assets/index-DBbmW5om.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DgBZrtVG.css">
+  <script type="module" crossorigin src="./assets/index-wQGNjgZl.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-OPHdyttX.css">
 </head>
 <body>
 <div id="app-wrapper">
@@ -154,6 +154,15 @@
                             <button type="button" class="cfg-reset-btn" onclick="resetConfigValue('playerName')">初期値</button>
                         </div>
                         <p class="cfg-rule-note" id="cfg-player-name-note">空欄で確定した場合は「あなた」に戻ります。最大18文字です。</p>
+                    </section>
+                    <section class="cfg-compact-card cfg-ddd-performance-card">
+                        <div class="cfg-compact-heading"><span>PERFORMANCE</span><strong>描画品質・省電力</strong></div>
+                        <p class="cfg-rule-note">UIサイズ・当たり判定・ゲーム速度は変えず、最大FPSと盤面Canvasの内部解像度を調整します。</p>
+                        <div class="cfg-segmented-control cfg-ddd-performance-modes" role="group" aria-label="描画品質">
+                            <button type="button" data-ddd-performance-quality="high">高画質<small>60FPS / 2.0x</small></button>
+                            <button type="button" data-ddd-performance-quality="standard">標準<small>60FPS / 1.5x</small></button>
+                            <button type="button" data-ddd-performance-quality="power">省電力<small>30FPS / 1.0x</small></button>
+                        </div>
                     </section>
                     <section class="cfg-compact-card cfg-ddd-card-text-card">
                         <div class="cfg-compact-heading"><span>CARD TEXT</span><strong>カード効果の文字サイズ</strong></div>
