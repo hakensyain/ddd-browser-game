@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ダンジョンダイスクロニクル</title>
     <link rel="icon" type="image/png" href="./assets/images/ui/ddd_app_icon.png">
-  <script type="module" crossorigin src="./assets/index-D2NTvzCN.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-1FaYdyDl.css">
+  <script type="module" crossorigin src="./assets/index-6VIOK0Ts.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-mvMlIQ8S.css">
 </head>
 <body>
 <div id="app-wrapper">
@@ -52,6 +52,21 @@
         <img class="ddd-title-background" src="./assets/ddd-title-space-bg-Brd7VBjW.webp" alt="">
         <div class="ddd-title-atmosphere" aria-hidden="true"></div>
 
+        <div class="ddd-title-language" data-i18n-skip>
+            <span class="ddd-title-language-kicker">LANGUAGE</span>
+            <div class="ddd-title-language-row">
+                <span class="ddd-title-language-label" lang="ja">日本語</span>
+                <label class="ddd-title-language-switch" for="ddd-language-toggle" data-allow-rapid-clicks>
+                    <input id="ddd-language-toggle" type="checkbox" role="switch" aria-label="表示言語を英語に切り替える" aria-checked="false">
+                    <span class="ddd-title-language-track" aria-hidden="true">
+                        <span class="ddd-title-language-thumb"></span>
+                    </span>
+                </label>
+                <span class="ddd-title-language-label" lang="en">ENGLISH</span>
+            </div>
+            <output id="ddd-language-current" class="ddd-title-language-current" for="ddd-language-toggle">日本語</output>
+        </div>
+
         <div id="title-char-container" class="ddd-title-character" aria-hidden="true">
             <img src="./assets/ddd-title-witch-Cc7HgF66.webp" alt="">
         </div>
@@ -63,6 +78,11 @@
 
         <div class="ddd-title-logo" aria-label="ダンジョンダイスクロニクル">
             <img src="./assets/ddd-title-logo-CUIKYTno.webp" alt="ダンジョンダイスクロニクル">
+            <div class="ddd-title-logo-english" aria-hidden="true" data-i18n-skip>
+                <span>DUNGEON DICE</span>
+                <strong>CHRONICLE</strong>
+                <small>THE DICE DEFINE YOUR DESTINY</small>
+            </div>
         </div>
         
         
