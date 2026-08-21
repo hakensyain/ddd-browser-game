@@ -1,0 +1,75 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # GitHub Actions cron uses UTC. This runs at 03:17 UTC (12:17 JST)
+    # on days 1, 6, 11, 16, 21, 26, and 31 of each month.
+    - cron: '17 3 */5 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: supabase-keepalive
+  cancel-in-progress: false
+
+jobs:
+  keep-alive:
+    name: Read-only Supabase API check
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+    steps:
+      - name: Send one read-only request
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${SUPABASE_URL:-}" ]]; then
+            echo "Supabase Keep Alive failed: SUPABASE_URL is not configured."
+            exit 1
+          fi
+          if [[ -z "${SUPABASE_ANON_KEY:-}" ]]; then
+            echo "Supabase Keep Alive failed: SUPABASE_ANON_KEY is not configured."
+            exit 1
+          fi
+          if [[ ! "$SUPABASE_URL" =~ ^https://[a-z0-9-]+\.supabase\.co/?$ ]]; then
+            echo "Supabase Keep Alive failed: SUPABASE_URL must be an HTTPS supabase.co project URL."
+            exit 1
+          fi
+
+          response_file="${RUNNER_TEMP}/supabase-keepalive-response"
+          trap 'rm -f "$response_file"' EXIT
+
+          # Existing game tables intentionally reject the anonymous role via
+          # RLS. The Auth health endpoint is read-only and works with either a
+          # current publishable key or the legacy anon key without widening DB
+          # permissions or creating an authentication user.
+          http_status="$(curl \
+            --silent \
+            --show-error \
+            --request GET \
+            --connect-timeout 10 \
+            --max-time 30 \
+            --output "$response_file" \
+            --write-out '%{http_code}' \
+            --header "apikey: ${SUPABASE_ANON_KEY}" \
+            --header 'Accept: application/json' \
+            "${SUPABASE_URL%/}/auth/v1/health")"
+
+          if [[ "$http_status" != '200' ]]; then
+            case "$http_status" in
+              000) reason='network, DNS, or timeout failure' ;;
+              401) reason='publishable/anon key was rejected' ;;
+              403) reason='request is not permitted' ;;
+              404) reason='Supabase URL or Auth endpoint was not found' ;;
+              5??) reason='Supabase project or server error' ;;
+              *)   reason='unexpected HTTP response' ;;
+            esac
+            echo "Supabase Keep Alive failed: HTTP ${http_status} (${reason})."
+            exit 1
+          fi
+
+          echo 'Supabase Keep Alive succeeded: HTTP 200 (read-only API request).'
