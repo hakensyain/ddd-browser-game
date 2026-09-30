@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ダンジョンダイスクロニクル</title>
     <link rel="icon" type="image/png" href="./assets/images/ui/ddd_app_icon.png">
-  <script type="module" crossorigin src="./assets/index-B-rwgv0n.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CUTBQiMD.css">
+  <script type="module" crossorigin src="./assets/index-Bm4RZ9Lj.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Ct4F-kGp.css">
 </head>
 <body>
 <div id="app-wrapper">
@@ -424,8 +424,9 @@
         </div>
 
         <footer class="cfg-bottom-bar">
-            <button class="cfg-bottom-btn cfg-apply-btn" id="cfg-btn-apply"><span class="cfg-button-mark" aria-hidden="true">✓</span><span data-cfg-apply-label>適用</span><small>APPLY</small></button>
-            <button class="cfg-bottom-btn cfg-back-btn" id="cfg-btn-return-game"><span class="cfg-button-mark" aria-hidden="true">←</span><span>戻る</span><small>BACK</small></button>
+            <button type="button" class="cfg-bottom-btn cfg-apply-btn" id="cfg-btn-apply"><span class="cfg-button-mark" aria-hidden="true">✓</span><span data-cfg-apply-label>適用</span><small>APPLY</small></button>
+            <button type="button" class="cfg-bottom-btn cfg-back-btn" id="cfg-btn-return-game"><span class="cfg-button-mark" aria-hidden="true">←</span><span>戻る</span><small>BACK</small></button>
+            <button type="button" class="cfg-bottom-btn cfg-title-btn" id="cfg-btn-to-title"><span class="cfg-button-mark" aria-hidden="true">◇</span><span>タイトルに戻る</span><small>RETURN TO TITLE</small></button>
         </footer>
 
         <section class="cfg-ddd-camera-preview" id="cfg-ddd-camera-preview" role="dialog" aria-modal="true" aria-labelledby="cfg-ddd-camera-preview-title" hidden>
@@ -498,17 +499,22 @@
         <!-- 3. メッセージレイヤー -->
         <div id="adv-ui-layer" style="position:absolute; width:100%; height:100%; z-index:5; pointer-events:none;">
             <div id="adv-message-box" style="pointer-events:auto;">
+                <div class="adv-window-rail" aria-hidden="true">
+                    <span>DUNGEON DICE</span>
+                    <i></i>
+                    <small>STORY LOG</small>
+                </div>
                 <div id="adv-name-box"></div>
                 <div id="adv-message-text"></div>
-                <div id="adv-click-indicator">▼</div>
+                <div id="adv-click-indicator" aria-label="次へ"><span>NEXT</span><i aria-hidden="true"></i></div>
             </div>
 
             <!-- Shortcut Docks -->
-            <div id="adv-shortcuts-left" class="adv-shortcut-dock" style="left: 20px;"></div>
-            <div id="adv-shortcuts-right" class="adv-shortcut-dock" style="right: 120px;"></div>
+            <div id="adv-shortcuts-left" class="adv-shortcut-dock adv-shortcut-dock-left" aria-label="ADVショートカット"></div>
+            <div id="adv-shortcuts-right" class="adv-shortcut-dock adv-shortcut-dock-right" aria-label="ADVショートカット"></div>
 
             <!-- Hamburger Button -->
-            <button id="adv-sys-hamburger" class="adv-hamburger-btn">
+            <button type="button" id="adv-sys-hamburger" class="adv-hamburger-btn" aria-label="システムメニューを開く" aria-haspopup="dialog" aria-expanded="false">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -518,7 +524,7 @@
 
     <!-- アジトフェイズ（Hideout Phase） -->
     <div id="hideout-screen" class="screen ho-root" style="display:none;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/title_bg_forest.png');"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene);"></div>
         <div class="ho-scale-wrapper">
             <!-- Top Status Bar -->
             <div class="ho-top-bar">
@@ -565,35 +571,30 @@
                 <div class="ho-character-slot slot-kumako" id="ho-slot-kumako" style="display:none;">
                     <div class="ho-stump"></div>
                     <button class="ho-sticker sticker-kumako" id="ho-btn-kumako" onclick="window.startHeroineScenario('kumako')">
-                        <img src="assets/images/characters/kumako/kumako_chibi.png">
                     </button>
                 </div>
                 <!-- Luna -->
                 <div class="ho-character-slot slot-luna" id="ho-slot-luna" style="display:none;">
                     <div class="ho-stump"></div>
                     <button class="ho-sticker sticker-luna" id="ho-btn-luna" onclick="window.startHeroineScenario('luna')">
-                        <img src="assets/images/characters/luna/luna_chibi.png">
                     </button>
                 </div>
                 <!-- Kitami -->
                 <div class="ho-character-slot slot-kitami" id="ho-slot-kitami" style="display:none;">
                     <div class="ho-stump"></div>
                     <button class="ho-sticker sticker-kitami" id="ho-btn-kitami" onclick="window.startHeroineScenario('kitami')">
-                        <img src="assets/images/characters/kitami/kitami_chibi.png">
                     </button>
                 </div>
                 <!-- Ameri -->
                 <div class="ho-character-slot slot-ameri" id="ho-slot-ameri" style="display:none;">
                     <div class="ho-stump"></div>
                     <button class="ho-sticker sticker-ameri" id="ho-btn-ameri" onclick="window.startHeroineScenario('ameri')">
-                        <img src="assets/images/characters/ameri/americaco_chibi.png">
                     </button>
                 </div>
                 <!-- Panpan -->
                 <div class="ho-character-slot slot-panpan" id="ho-slot-panpan" style="display:none;">
                     <div class="ho-stump"></div>
                     <button class="ho-sticker sticker-panpan" id="ho-btn-panpan" onclick="window.startHeroineScenario('panpan')">
-                        <img src="assets/images/characters/panpan/panpan_chibi.png">
                     </button>
                 </div>
             </div>
@@ -620,7 +621,7 @@
 
     <!-- ショップフェイズ（Shop Phase） -->
     <div id="shop-screen" class="screen ho-root" style="display:none;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/adv_shop_bg.jpg'); filter: brightness(0.8);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); filter: brightness(0.8);"></div>
         <div class="ho-scale-wrapper">
             <!-- Top Banner -->
             <div class="shop-top-banner">
@@ -633,7 +634,7 @@
             </div>
 
             <!-- Character Girl -->
-            <div class="shop-char" style="background-image: url('assets/images/characters/shop/ショップのお姉さん.png');"></div>
+            <div class="shop-char" style="background-image: none;"></div>
 
             <!-- Item List -->
             <div class="shop-list-container" id="shop-item-list">
@@ -650,7 +651,7 @@
     
     
     <div id="kumasewa-practice-screen" class="screen ho-root" style="display:none;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/title_bg_forest.png'); filter: brightness(0.58) sepia(0.25);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); filter: brightness(0.58) sepia(0.25);"></div>
         <div class="ho-scale-wrapper">
             <div class="shop-top-banner">
                 <div class="shop-title-text">KUMA-SEWA <span class="shop-sub">&#12367;&#12414;&#12379;&#12431;&#32244;&#32722;</span></div>
@@ -665,10 +666,10 @@
 
     <!-- ぴぃ活モード -->
     <div id="pkatsu-screen" class="screen ho-root" style="display:none; background:#1a1a24;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/title_bg_forest.png'); filter: brightness(0.7) sepia(0.2);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); filter: brightness(0.7) sepia(0.2);"></div>
         <div class="ho-scale-wrapper">
             <!-- Top Left: ぴぃかつ Banner (Shared) -->
-            <div style="position:absolute; top:20px; left:-10px; z-index:30; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; padding:15px 40px 15px 50px; border:4px solid #5a3c22; border-left:none; border-radius:0 25px 25px 0; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); display:flex; align-items:center;">
+            <div style="position:absolute; top:20px; left:-10px; z-index:30; background-image:var(--ddd-native-panel); background-size:cover; padding:15px 40px 15px 50px; border:4px solid #5a3c22; border-left:none; border-radius:0 25px 25px 0; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); display:flex; align-items:center;">
                 <span style="font-size:36px; font-family:'Yusei Magic', 'Hiragino Maru Gothic Pro', 'Kosugi Maru', 'Zen Maru Gothic', 'Meiryo', sans-serif; font-weight:900; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15, 0 4px 6px rgba(0,0,0,0.6); letter-spacing:4px;">ぴぃかつ</span>
             </div>
 
@@ -676,9 +677,9 @@
             <div id="pkatsu-select-phase" style="display:flex; width:100%; height:100%; position:absolute; top:1px; left:3px; box-sizing:border-box;">
                 <!-- Left: Allies (Carousel) -->
                 <div style="flex:1; display:flex; align-items:center; justify-content:center; position:relative; padding:20px;">
-                    <button id="pkatsu-ally-prev" class="pkatsu-nav-btn" onclick="window.pkatsuAllyPrev()" style="position:absolute; left:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&lt;</button>
+                    <button id="pkatsu-ally-prev" class="pkatsu-nav-btn" onclick="window.pkatsuAllyPrev()" style="position:absolute; left:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:var(--ddd-native-panel); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&lt;</button>
                     <div id="pkatsu-ally-focus" style="transition: transform 0.3s;"></div>
-                    <button id="pkatsu-ally-next" class="pkatsu-nav-btn" onclick="window.pkatsuAllyNext()" style="position:absolute; right:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&gt;</button>
+                    <button id="pkatsu-ally-next" class="pkatsu-nav-btn" onclick="window.pkatsuAllyNext()" style="position:absolute; right:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:var(--ddd-native-panel); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&gt;</button>
                 </div>
                 
                 <!-- Middle: VS separator -->
@@ -688,9 +689,9 @@
 
                 <!-- Right: Targets (Carousel) -->
                 <div style="flex:1; display:flex; align-items:center; justify-content:center; position:relative; padding:20px;">
-                    <button id="pkatsu-target-prev" class="pkatsu-nav-btn" onclick="window.pkatsuTargetPrev()" style="position:absolute; left:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&lt;</button>
+                    <button id="pkatsu-target-prev" class="pkatsu-nav-btn" onclick="window.pkatsuTargetPrev()" style="position:absolute; left:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:var(--ddd-native-panel); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&lt;</button>
                     <div id="pkatsu-target-focus" style="transition: transform 0.3s;"></div>
-                    <button id="pkatsu-target-next" class="pkatsu-nav-btn" onclick="window.pkatsuTargetNext()" style="position:absolute; right:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&gt;</button>
+                    <button id="pkatsu-target-next" class="pkatsu-nav-btn" onclick="window.pkatsuTargetNext()" style="position:absolute; right:10%; z-index:10; font-size:40px; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; background-image:var(--ddd-native-panel); background-size:cover; border:3px solid #5a3c22; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; box-shadow:0 4px 8px rgba(0,0,0,0.6); cursor:pointer;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">&gt;</button>
                 </div>
             </div>
 
@@ -698,19 +699,19 @@
             <div id="pkatsu-dice-phase" style="display:none; width:100%; height:100%; position:absolute; top:0; left:0; z-index:20; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
                 
                 <!-- Background Image -->
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background-image:url('assets/images/bg/title_bg_forest.png'); background-size:cover; background-position:center; filter:brightness(0.8) sepia(0.2); z-index:0;"></div>
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background-image:var(--ddd-native-scene); background-size:cover; background-position:center; filter:brightness(0.8) sepia(0.2); z-index:0;"></div>
                 
                 <!-- Firefly particles (Optional dynamic touch) -->
                 <div id="pkatsu-fireflies" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></div>
 
                 <!-- Top Right: Target Portrait -->
                 <div style="position:absolute; top:394px; right:39px; z-index:10; width:240px; height:160px; transform:scale(1.5);">
-                    <img id="pkatsu-dice-target-img" src="" style="width:98%; height:100%; object-fit:contain; filter:drop-shadow(0 0 10px rgba(0,0,0,0.5)); transform:scale(3.9);">
+                    <img id="pkatsu-dice-target-img" alt="" style="width:98%; height:100%; object-fit:contain; filter:drop-shadow(0 0 10px rgba(0,0,0,0.5)); transform:scale(3.9);">
                 </div>
 
                 <!-- Center Modal -->
                 <div style="z-index:20; position:relative; margin-top:-50px;">
-                    <div style="background-image:url('assets/images/ui/mossy_button_texture.png'); background-size:cover; border:6px solid #b89947; border-radius:15px; padding:40px 80px; box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0,0,0,0.8); text-align:center; position:relative;">
+                    <div style="background-image:var(--ddd-native-button); background-size:cover; border:6px solid #b89947; border-radius:15px; padding:40px 80px; box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0,0,0,0.8); text-align:center; position:relative;">
                         <div style="position:absolute; top:0; left:0; width:100%; height:100%; border:2px solid #e0c878; border-radius:9px; pointer-events:none; box-sizing:border-box;"></div>
                         
                         <div style="font-size:32px; font-weight:900; color:#fff; text-shadow:2px 2px 0 #3a1c01, -2px -2px 0 #3a1c01, 2px -2px 0 #3a1c01, -2px 2px 0 #3a1c01, 0 4px 6px rgba(0,0,0,0.8); margin-bottom:30px;">
@@ -724,7 +725,7 @@
                 </div>
 
                 <!-- Peeking Character (Dynamic) -->
-                <img id="pkatsu-dice-ally-img" src="assets/images/characters/kumako/kumako_adv.png" style="position:absolute; bottom:-104px; left:5.9%; width:220px; z-index:15; transform:scale(3.2); filter:drop-shadow(5px 5px 10px rgba(0,0,0,0.8));">
+                <img id="pkatsu-dice-ally-img" alt="" style="position:absolute; bottom:-104px; left:5.9%; width:220px; z-index:15; transform:scale(3.2); filter:drop-shadow(5px 5px 10px rgba(0,0,0,0.8));">
 
                 <!-- Bottom Right: Dice Tray -->
                 <div style="position:absolute; bottom:20px; right:40px; z-index:25; display:flex; flex-direction:column; align-items:flex-end;">
@@ -746,7 +747,7 @@
                     </div>
                     
                     <!-- The Felt Tray -->
-                    <div style="background-image:url('assets/images/ui/mossy_button_texture.png'); background-size:cover; padding:15px; border-radius:20px; box-shadow:0 15px 30px rgba(0,0,0,0.9); display:flex; align-items:center; gap:15px; position:relative;">
+                    <div style="background-image:var(--ddd-native-button); background-size:cover; padding:15px; border-radius:20px; box-shadow:0 15px 30px rgba(0,0,0,0.9); display:flex; align-items:center; gap:15px; position:relative;">
                         <div id="pkatsu-match-indicator" style="display:none; position:absolute; top:-29px; left:-118px; color:#ff0000; font-size:32px; font-weight:bold; text-shadow:2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0px 5px 10px rgba(0,0,0,0.8); z-index: 30; transform: rotate(-5deg); letter-spacing: 2px;">★ 属性一致！出目2倍！ ★</div>
                         
                         <!-- Green Felt Area -->
@@ -775,16 +776,16 @@
             </div>
 
             <!-- Footer Buttons -->
-            <button id="pkatsu-btn-back" onclick="window.closePkatsu()" style="display:none; position:absolute; bottom:22px; left:33px; z-index:30; font-size:24px; padding:10px 40px; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; font-family:'Yusei Magic', 'Zen Maru Gothic', sans-serif; cursor:pointer; font-weight:bold; transition: transform 0.1s, filter 0.2s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">戻る</button>
-            <button id="pkatsu-btn-start" onclick="window.pkatsuStartBtn()" style="position:absolute; bottom:22px; right:183px; z-index:30; font-size:24px; padding:10px 40px; display:none; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; font-family:'Yusei Magic', 'Zen Maru Gothic', sans-serif; cursor:pointer; font-weight:bold; transition: transform 0.1s, filter 0.2s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">決定</button>
+            <button id="pkatsu-btn-back" onclick="window.closePkatsu()" style="display:none; position:absolute; bottom:22px; left:33px; z-index:30; font-size:24px; padding:10px 40px; background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; font-family:'Yusei Magic', 'Zen Maru Gothic', sans-serif; cursor:pointer; font-weight:bold; transition: transform 0.1s, filter 0.2s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">戻る</button>
+            <button id="pkatsu-btn-start" onclick="window.pkatsuStartBtn()" style="position:absolute; bottom:22px; right:183px; z-index:30; font-size:24px; padding:10px 40px; display:none; background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; font-family:'Yusei Magic', 'Zen Maru Gothic', sans-serif; cursor:pointer; font-weight:bold; transition: transform 0.1s, filter 0.2s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">決定</button>
         </div>
     </div>
 
     <!-- くませわモード -->
     <div id="kumasewa-screen" class="screen ho-root" style="display:none; background:#221a24;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/adv_shop_bg.jpg'); filter: brightness(0.6) sepia(0.3);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); filter: brightness(0.6) sepia(0.3);"></div>
         <div class="ho-scale-wrapper">
-            <div style="position:absolute; top:20px; left:-10px; z-index:30; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; padding:15px 40px 15px 50px; border:4px solid #5a3c22; border-left:none; border-radius:0 25px 25px 0; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); display:flex; align-items:center;">
+            <div style="position:absolute; top:20px; left:-10px; z-index:30; background-image:var(--ddd-native-panel); background-size:cover; padding:15px 40px 15px 50px; border:4px solid #5a3c22; border-left:none; border-radius:0 25px 25px 0; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); display:flex; align-items:center;">
                 <span style="font-size:36px; font-weight:900; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15, 0 4px 6px rgba(0,0,0,0.6); letter-spacing:4px;">くませわ</span>
             </div>
 
@@ -817,7 +818,7 @@
                 <button id="kumasewa-btn-close" onclick="window.closeKumasewa(true)" class="shop-back-btn" style="font-size:30px; padding:15px 60px; display:none;">戻る</button>
             </div>
 
-            <button id="kumasewa-btn-back" onclick="window.closeKumasewa(false)" style="position:absolute; bottom:22px; left:33px; z-index:30; font-size:24px; padding:10px 40px; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; cursor:pointer; font-weight:bold; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">やめる</button>
+            <button id="kumasewa-btn-back" onclick="window.closeKumasewa(false)" style="position:absolute; bottom:22px; left:33px; z-index:30; font-size:24px; padding:10px 40px; background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; border:4px solid #5a3c22; border-radius:15px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; cursor:pointer; font-weight:bold; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">やめる</button>
             
             <button id="kumasewa-btn-start" onclick="window.startKumasewaGame()" style="position:absolute; bottom:22px; right:33px; z-index:30; font-size:32px; padding:15px 60px; background:linear-gradient(to bottom, #ff3366, #990000); color:#fff; border:4px solid #ffccdd; border-radius:30px; box-shadow:0 10px 20px rgba(0,0,0,0.6), inset 0 5px 15px rgba(255,255,255,0.4); text-shadow:2px 2px 4px #000; cursor:pointer; font-weight:bold; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'">スタート！</button>
         </div>
@@ -825,7 +826,7 @@
 
     <!-- 戦略フェイズ（ハルウリ）画面ダミー -->
     <div id="politics-screen" class="screen ho-root" style="display:none;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/politics_bg.png'); filter: blur(2px) brightness(0.7);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); filter: blur(2px) brightness(0.7);"></div>
         <div class="ho-scale-wrapper">
             <div style="background:#ffee00; width:100%; padding:5px 20px; position:absolute; top:0; box-sizing:border-box;">
                 <span style="font-weight:bold; font-size:40px; font-style:italic;">HARUURI</span> <span style="font-size:18px; margin-left:10px;">ハルウリ</span>
@@ -850,7 +851,7 @@
 
     <!-- 進撃マップ選択画面 (Map Select) -->
     <div id="select-screen" class="screen ho-root" style="display:none;">
-        <div class="ho-bg" style="background-image: url('assets/images/bg/title_bg_forest.png'); background-size:cover; background-position:center; filter:brightness(0.7);"></div>
+        <div class="ho-bg" style="background-image: var(--ddd-native-scene); background-size:cover; background-position:center; filter:brightness(0.7);"></div>
         <div class="ho-scale-wrapper">
             
             <!-- Top Left: MAP Banner -->
@@ -882,7 +883,7 @@
             </div>
 
             <!-- Bottom Footer: Info -->
-            <div style="position:absolute; bottom:0; left:0; width:100%; height:80px; background-color:rgba(107,66,38,0.9); background-image:url('assets/images/ui/mossy_top_board_texture.png'); background-size:100% 100%; border-top:4px solid #3a1c01; display:flex; align-items:center; padding-left:260px; z-index:9; box-shadow:0 -4px 10px rgba(0,0,0,0.5);">
+            <div style="position:absolute; bottom:0; left:0; width:100%; height:80px; background-color:rgba(107,66,38,0.9); background-image:var(--ddd-native-panel); background-size:100% 100%; border-top:4px solid #3a1c01; display:flex; align-items:center; padding-left:260px; z-index:9; box-shadow:0 -4px 10px rgba(0,0,0,0.5);">
                 <div id="map-tips-text" style="color:#ffdf91; font-size:22px; font-weight:bold; text-shadow:2px 2px 0 #3a1c01;">
                     TIPS: STAGE 1-1をクリアするとメインシナリオが進みます
                 </div>
@@ -914,66 +915,69 @@
     </div>
     
     <!-- System Menu Overlay (Moved from adv-screen) -->
-    <div id="adv-sys-menu-layer" style="display:none; position:absolute; z-index:9999; width:100%; height:100%; pointer-events:auto;">
+    <div id="adv-sys-menu-layer" role="dialog" aria-modal="true" aria-labelledby="adv-sys-menu-title" aria-hidden="true" style="display:none; position:absolute; z-index:9999; width:100%; height:100%; pointer-events:auto;">
         <div id="adv-sys-menu-bg" style="position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.3);"></div>
         <div id="adv-sys-menu-panel" class="sys-menu-panel">
-            <div class="sys-menu-title">システムメニュー</div>
+            <div class="sys-menu-title" id="adv-sys-menu-title"><span>SYSTEM</span><strong>システムメニュー</strong><small>ADV CONTROL CONSOLE</small></div>
             <div class="sys-menu-list" id="adv-sys-menu-list">
-                <button class="sys-scroll-btn" data-action="save" onclick="window.openSaveLoadModal && window.openSaveLoadModal('save')">SAVE</button>
-                <button class="sys-scroll-btn" data-action="load" onclick="window.openSaveLoadModal && window.openSaveLoadModal('load')">LOAD</button>
-                
-                <button class="sys-wood-btn" data-action="toggleHideUI">
-                    <span class="icon">🪟</span> ウィンドウ非表示
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="hideWindow"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="voiceRepeat">
-                    <span class="icon">🔊</span> ボイスリピート
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="voiceRepeat"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="toggleAuto">
-                    <span class="icon">⚙️</span> オート
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="auto"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="toggleSkip">
-                    <span class="icon">💨</span> スキップ
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="skip"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="toggleLog">
-                    <span class="icon">📖</span> バックログ
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="backlog"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="backScene">
-                    <span class="icon">⏪</span> バックシーン
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="backscene"><span class="sys-custom-check"></span></label>
-                </button>
-                <button class="sys-wood-btn" data-action="openAdvConfig">
-                    <span class="icon">⚙</span> コンフィグ
-                    <label class="sys-check-wrap"><input type="checkbox" data-id="config"><span class="sys-custom-check"></span></label>
-                </button>
+                <div class="sys-primary-actions">
+                    <button type="button" class="sys-scroll-btn" data-action="save" onclick="window.openSaveLoadModal && window.openSaveLoadModal('save')"><span>SAVE</span><small>PROGRESS DATA</small></button>
+                    <button type="button" class="sys-scroll-btn" data-action="load" onclick="window.openSaveLoadModal && window.openSaveLoadModal('load')"><span>LOAD</span><small>RESTORE DATA</small></button>
+                </div>
+
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="toggleHideUI"><span class="icon" aria-hidden="true">UI</span><span class="sys-action-copy"><strong>ウィンドウ非表示</strong><small>HIDE MESSAGE UI</small></span></button>
+                    <label class="sys-check-wrap" aria-label="ウィンドウ非表示をショートカットに表示"><input type="checkbox" data-id="hideWindow"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="voiceRepeat"><span class="icon" aria-hidden="true">VO</span><span class="sys-action-copy"><strong>ボイスリピート</strong><small>VOICE REPLAY</small></span></button>
+                    <label class="sys-check-wrap" aria-label="ボイスリピートをショートカットに表示"><input type="checkbox" data-id="voiceRepeat"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="toggleAuto"><span class="icon" aria-hidden="true">AU</span><span class="sys-action-copy"><strong>オート</strong><small>AUTO PLAY</small></span></button>
+                    <label class="sys-check-wrap" aria-label="オートをショートカットに表示"><input type="checkbox" data-id="auto"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="toggleSkip"><span class="icon" aria-hidden="true">SK</span><span class="sys-action-copy"><strong>スキップ</strong><small>FAST FORWARD</small></span></button>
+                    <label class="sys-check-wrap" aria-label="スキップをショートカットに表示"><input type="checkbox" data-id="skip"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="toggleLog"><span class="icon" aria-hidden="true">LG</span><span class="sys-action-copy"><strong>バックログ</strong><small>MESSAGE HISTORY</small></span></button>
+                    <label class="sys-check-wrap" aria-label="バックログをショートカットに表示"><input type="checkbox" data-id="backlog"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="backScene"><span class="icon" aria-hidden="true">BK</span><span class="sys-action-copy"><strong>バックシーン</strong><small>PREVIOUS SCENE</small></span></button>
+                    <label class="sys-check-wrap" aria-label="バックシーンをショートカットに表示"><input type="checkbox" data-id="backscene"><span class="sys-custom-check"></span></label>
+                </div>
+                <div class="sys-menu-row">
+                    <button type="button" class="sys-wood-btn" data-action="openAdvConfig"><span class="icon" aria-hidden="true">CF</span><span class="sys-action-copy"><strong>コンフィグ</strong><small>GAME SETTINGS</small></span></button>
+                    <label class="sys-check-wrap" aria-label="コンフィグをショートカットに表示"><input type="checkbox" data-id="config"><span class="sys-custom-check"></span></label>
+                </div>
             </div>
-            <button id="adv-sys-menu-close" class="sys-menu-close-btn">戻る</button>
-            
-            <div class="sys-scrollbar-rod">
-                <div class="sys-scrollbar-thumb" id="sys-scrollbar-thumb"></div>
+            <div class="sys-menu-footer">
+                <button type="button" id="adv-sys-menu-close" class="sys-menu-close-btn"><span aria-hidden="true">←</span> 戻る</button>
+                <button type="button" id="adv-sys-menu-exit" class="sys-menu-exit-btn"><span aria-hidden="true">◇</span> タイトルに戻る</button>
             </div>
         </div>
     </div>
 
     <!-- バックログオーバーレイ (Moved from adv-screen) -->
     <div id="adv-log-overlay" style="display:none; position:absolute; z-index:9999; width:100%; height:100%; background:rgba(0,0,0,0.85); pointer-events:auto;">
-        <h2 style="margin-top:40px;">BACKLOG</h2>
-        <div id="adv-log-content"></div>
-        <button id="adv-btn-log-close" class="btn-red" style="position:absolute; bottom:20px; right:50px;">閉じる</button>
+        <section class="adv-log-panel" role="dialog" aria-modal="true" aria-labelledby="adv-log-title">
+            <header><span>MESSAGE ARCHIVE</span><h2 id="adv-log-title">BACKLOG</h2></header>
+            <div id="adv-log-content"></div>
+            <button type="button" id="adv-btn-log-close" class="adv-log-close-btn">閉じる <small>CLOSE</small></button>
+        </section>
     </div>
 </div>
 
 
 
-<div id="formation-screen" class="screen ho-root" style="display:none; flex-direction:column; padding:0; background-image:url('assets/images/bg/forest_stage_bg.jpg'); background-size:cover; position:relative; overflow:hidden; width:100vw; height:100vh;">
+<div id="formation-screen" class="screen ho-root" style="display:none; flex-direction:column; padding:0; background-image:var(--ddd-native-scene); background-size:cover; position:relative; overflow:hidden; width:100vw; height:100vh;">
     <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:0;"></div>
     
     <!-- Header -->
-    <div style="display:flex; justify-content:space-between; background-image:url('assets/images/ui/mossy_top_board_texture.png'); background-size:100% 100%; padding:15px 30px; align-items:center; border-bottom:4px solid #3a1c01; z-index:1; position:relative; box-shadow:0 5px 10px rgba(0,0,0,0.5);">
+    <div style="display:flex; justify-content:space-between; background-image:var(--ddd-native-panel); background-size:100% 100%; padding:15px 30px; align-items:center; border-bottom:4px solid #3a1c01; z-index:1; position:relative; box-shadow:0 5px 10px rgba(0,0,0,0.5);">
         <div style="font-size:32px; font-weight:900; font-style:italic; letter-spacing:4px; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15, 0 4px 6px rgba(0,0,0,0.6);">MEMBER <span style="font-size:18px;">メンバー</span></div>
         <div style="display:flex; align-items:center; gap:20px;">
             <div style="background:rgba(0,0,0,0.6); color:#ffdf91; font-size:20px; font-weight:bold; padding:10px 20px; border-radius:10px; border:2px solid #5a3c22; display:flex; align-items:center; gap:10px; box-shadow:inset 0 0 10px rgba(0,0,0,0.8);">
@@ -985,7 +989,7 @@
     </div>
     
     <!-- Column Headers -->
-    <div style="display:flex; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border-bottom:3px solid #3a1c01; align-items:center; height:50px; z-index:1; position:relative; box-shadow:0 4px 6px rgba(0,0,0,0.4);">
+    <div style="display:flex; background-image:var(--ddd-native-panel); background-size:cover; border-bottom:3px solid #3a1c01; align-items:center; height:50px; z-index:1; position:relative; box-shadow:0 4px 6px rgba(0,0,0,0.4);">
         <div id="f-standby-header" style="flex:1; text-align:center; font-size:26px; color:#ffffff; font-weight:900; letter-spacing:5px; text-shadow:-2px -2px 0 #1a0f05, 2px -2px 0 #1a0f05, -2px 2px 0 #1a0f05, 2px 2px 0 #1a0f05, 0 4px 8px rgba(0,0,0,0.9); transition: flex 0.3s; min-width:0; overflow:hidden; white-space:nowrap;">待機メンバー</div>
         <div id="f-deployed-header" style="flex:1; text-align:center; font-size:26px; color:#ffffff; font-weight:900; letter-spacing:5px; text-shadow:-2px -2px 0 #1a0f05, 2px -2px 0 #1a0f05, -2px 2px 0 #1a0f05, 2px 2px 0 #1a0f05, 0 4px 8px rgba(0,0,0,0.9); transition: flex 0.3s; min-width:0; overflow:hidden; white-space:nowrap;">出撃メンバー</div>
     </div>
@@ -1007,11 +1011,11 @@
 </div>
 
 <!-- STATUS SCREEN (WOOD & SCROLL STYLE) -->
-<div id="status-screen" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; background-image:url('assets/images/bg/forest_stage_bg.jpg'); background-size:cover; overflow:hidden; font-family: 'Zen Maru Gothic', sans-serif;">
+<div id="status-screen" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; background-image:var(--ddd-native-scene); background-size:cover; overflow:hidden; font-family: 'Zen Maru Gothic', sans-serif;">
     <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);"></div>
 
     <!-- Wood Top Header -->
-    <div style="position:absolute; top:15px; left:50%; transform:translateX(-50%); z-index:10; background-image:url('assets/images/ui/mossy_top_board_texture.png'); background-size:100% 100%; border:4px solid #3a1c01; border-radius:15px; padding:15px 80px; box-shadow:0 8px 15px rgba(0,0,0,0.6);">
+    <div style="position:absolute; top:15px; left:50%; transform:translateX(-50%); z-index:10; background-image:var(--ddd-native-panel); background-size:100% 100%; border:4px solid #3a1c01; border-radius:15px; padding:15px 80px; box-shadow:0 8px 15px rgba(0,0,0,0.6);">
         <span style="font-size:36px; font-weight:900; color:#fffdd0; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15, 0 5px 10px rgba(0,0,0,0.5); letter-spacing:4px;">ステータス</span>
     </div>
 
@@ -1027,13 +1031,13 @@
         
         <!-- Profile -->
         <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">プロフ</div>
+            <div style="background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">プロフ</div>
             <div id="ss-profile" style="background:rgba(255,255,255,0.85); border:3px solid #5a3c22; border-radius:10px; padding:15px; color:#3a1c01; font-weight:bold; font-size:18px; line-height:1.5; white-space: pre-wrap; box-shadow:inset 0 2px 5px rgba(0,0,0,0.2);">いつも厄介事を...</div>
         </div>
         
         <!-- Weapon -->
         <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">武器</div>
+            <div style="background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">武器</div>
             <div style="background:rgba(255,255,255,0.85); border:3px solid #5a3c22; border-radius:10px; padding:15px; display:flex; gap:15px; align-items:center; box-shadow:inset 0 2px 5px rgba(0,0,0,0.2);">
                 <div id="ss-weapon-icon" style="font-size:48px; filter:drop-shadow(2px 4px 4px rgba(0,0,0,0.4));">🔫</div>
                 <div>
@@ -1045,11 +1049,11 @@
         
         <!-- Badges (Equipment) -->
         <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">装備アイテム</div>
+            <div style="background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; font-size:20px; font-weight:bold; padding:5px 20px; border:3px solid #5a3c22; border-radius:10px; width:fit-content; box-shadow:0 4px 8px rgba(0,0,0,0.5); text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">装備アイテム</div>
             <div id="ss-equipment-row" style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
                 <div id="ss-equipment-slots" style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;"></div>
                 
-                <div id="ss-minikuma-info" style="display:none; margin-left:20px; flex-direction:column; align-items:center; justify-content:center; background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; border:3px solid #5a3c22; border-radius:10px; padding:5px 25px; box-shadow:0 5px 10px rgba(0,0,0,0.6);">
+                <div id="ss-minikuma-info" style="display:none; margin-left:20px; flex-direction:column; align-items:center; justify-content:center; background-image:var(--ddd-native-panel); background-size:cover; border:3px solid #5a3c22; border-radius:10px; padding:5px 25px; box-shadow:0 5px 10px rgba(0,0,0,0.6);">
                     <div style="font-size:16px; font-weight:bold; color:#fffdd0; margin-bottom:5px; text-shadow:1px 1px 0 #4a2e15, -1px -1px 0 #4a2e15, 1px -1px 0 #4a2e15, -1px 1px 0 #4a2e15;">初期ミニクマ</div>
                     <div style="font-size:32px; font-weight:900; color:#ffdd33; text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15;"><span id="ss-minikuma-count">0</span>匹</div>
                 </div>
@@ -1058,7 +1062,7 @@
     </div>
 
     <!-- Right Stats Box -->
-    <div id="ss-stats-layout" style="position:absolute; top:5.5%; right:19.4%; width:280px; background-image:url('assets/images/ui/sys_scroll_anime_bg.png'); background-size:100% 100%; background-repeat:no-repeat; z-index:10; padding:120px 80px 120px 100px; filter:drop-shadow(0 15px 20px rgba(0,0,0,0.4));">
+    <div id="ss-stats-layout" style="position:absolute; top:5.5%; right:19.4%; width:280px; background-image:var(--ddd-native-paper); background-size:100% 100%; background-repeat:no-repeat; z-index:10; padding:120px 80px 120px 100px; filter:drop-shadow(0 15px 20px rgba(0,0,0,0.4));">
         <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:15px; border-bottom:2px dashed #5a3c22; padding-bottom:5px;">
             <div style="font-size:22px; font-weight:900; color:#3a1c01;">HP</div>
             <div id="ss-hp" style="text-align:right; font-size:32px; font-weight:900; color:#5a3c22;">0</div>
@@ -1087,7 +1091,7 @@
     
     <!-- Bottom Footer Layout -->
     <div style="position:absolute; bottom:25px; width:100%; display:flex; justify-content:center; align-items:center; gap:40px; z-index:15;">
-        <button style="background-image:url('assets/images/ui/wood_texture.png'); background-size:cover; color:#fffdd0; padding:15px 60px; font-size:26px; font-weight:bold; border:4px solid #5a3c22; border-radius:20px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; cursor:pointer; outline:none; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'" onclick="window.closeStatusScreen()">戻る</button>
+        <button style="background-image:var(--ddd-native-panel); background-size:cover; color:#fffdd0; padding:15px 60px; font-size:26px; font-weight:bold; border:4px solid #5a3c22; border-radius:20px; box-shadow:0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2); text-shadow:2px 2px 0 #4a2e15, -2px -2px 0 #4a2e15, 2px -2px 0 #4a2e15, -2px 2px 0 #4a2e15; cursor:pointer; outline:none; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='none'" onclick="window.closeStatusScreen()">戻る</button>
     </div>
 </div>
 
@@ -1111,10 +1115,10 @@
     <!-- 3色の斜めパネル -->
     <div id="trans-panel-y" style="position:absolute; top:-50%; left:-100%; width:250%; height:200%; background:#c9935d; transform:skewX(-25deg) translateX(-100%);"></div>
     <div id="trans-panel-b" style="position:absolute; top:-50%; left:-100%; width:250%; height:200%; background:#6b4226; transform:skewX(-25deg) translateX(-100%);"></div>
-    <div id="trans-panel-p" style="position:absolute; top:-50%; left:-100%; width:250%; height:200%; background-color:#3a1c01; background-image:url('assets/images/ui/wood_texture.png'); background-blend-mode:multiply; background-size:300px; transform:skewX(-25deg) translateX(-100%);"></div>
+    <div id="trans-panel-p" style="position:absolute; top:-50%; left:-100%; width:250%; height:200%; background-color:#3a1c01; background-image:var(--ddd-native-panel); background-blend-mode:multiply; background-size:300px; transform:skewX(-25deg) translateX(-100%);"></div>
     
     <!-- タイトルテキスト -->
-    <div id="scene-transition-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-2deg); background-image:url('assets/images/ui/mossy_top_board_texture.png'); background-color:rgba(107,66,38,0.9); background-size:100% 100%; border:6px solid #3a1c01; border-radius:15px; color:#ffdf91; font-size:48px; font-weight:900; letter-spacing:8px; padding:20px 80px; box-shadow:8px 12px 15px rgba(0,0,0,0.8); text-shadow:0 0 15px rgba(255,223,145,0.8), 3px 3px 0 #3a1c01, -3px -3px 0 #3a1c01, 3px -3px 0 #3a1c01, -3px 3px 0 #3a1c01, 0 5px 0 #1a0c00; opacity:0;">
+    <div id="scene-transition-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-2deg); background-image:var(--ddd-native-panel); background-color:rgba(107,66,38,0.9); background-size:100% 100%; border:6px solid #3a1c01; border-radius:15px; color:#ffdf91; font-size:48px; font-weight:900; letter-spacing:8px; padding:20px 80px; box-shadow:8px 12px 15px rgba(0,0,0,0.8); text-shadow:0 0 15px rgba(255,223,145,0.8), 3px 3px 0 #3a1c01, -3px -3px 0 #3a1c01, 3px -3px 0 #3a1c01, -3px 3px 0 #3a1c01, 0 5px 0 #1a0c00; opacity:0;">
         <div id="scene-transition-title-text">フェイズ移行</div>
     </div>
 </div>
