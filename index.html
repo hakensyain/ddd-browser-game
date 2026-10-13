@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ダンジョンダイスクロニクル</title>
-    <link rel="icon" type="image/png" href="./assets/images/ui/ddd_app_icon.png">
-  <script type="module" crossorigin src="./assets/index-Bm4RZ9Lj.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Ct4F-kGp.css">
+    <link rel="icon" type="image/png" href="./assets/images/ui/ddd_app_icon.png">
+    <style>
+        body { margin: 0; background: #000; }
+        .screen { display: none; }
+        #boot-screen { font-family: sans-serif; color: #fff; }
+        #boot-loading-panel { position: absolute; bottom: clamp(24px, 7vh, 70px); width: min(480px, 85vw); text-align: center; }
+        #boot-preload-status { margin: 0; color: #9fdcff; font-weight: 700; letter-spacing: .08em; }
+        #boot-preload-count { min-height: 18px; margin: 10px 0 0; color: #8ea6ba; font-size: 12px; }
+        #boot-preload-progress { height: 3px; margin-top: 10px; background: #203448; overflow: hidden; }
+        #boot-preload-progress::before { content: ''; display: block; width: var(--boot-progress, 0%); height: 100%; background: #00d9dc; transition: width .1s linear; }
+        #boot-retry { margin: 16px 0 0; padding: 9px 24px; border: 1px solid #9fdcff; background: #092333; color: #fff; cursor: pointer; }
+        #boot-retry[hidden], #boot-preload-progress[hidden] { display: none; }
+        @media (max-height: 620px) {
+            #boot-logo-container svg { width: 130px; height: 130px; }
+            #boot-logo-container h1 { font-size: 32px !important; }
+        }
+    </style>
+  <script type="module" crossorigin src="./assets/index-CBFE9Qo-.js"></script>
 </head>
 <body>
 <div id="app-wrapper">
@@ -26,8 +41,8 @@
 <!-- UI レイヤー -->
 <div id="ui-layer">
     <!-- 会社ロゴ・警告画面 (Boot Sequence) -->
-    <div id="boot-screen" style="display:flex; position:absolute; width:100%; height:100%; top:0; left:0; background:#000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; pointer-events:auto;">
-        <div id="boot-logo-container" style="display:none; text-align:center; opacity:0; transition:opacity 1.5s ease;">
+    <div id="boot-screen" data-phase="loading" style="display:flex; position:fixed; width:100%; height:100%; top:0; left:0; background:#000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; pointer-events:auto;">
+        <div id="boot-logo-container" style="display:block; text-align:center; opacity:1; transition:opacity 1.5s ease;">
             <!-- CSS/SVG で作成した会社ロゴ -->
             <div style="margin-bottom: 20px;">
                 <svg width="200" height="200" viewBox="0 0 200 200">
@@ -42,8 +57,13 @@
         <div id="boot-warning-container" style="display:none; text-align:center; opacity:0; transition:opacity 1s ease;">
             <div style="color:#fff; font-size:16px; line-height:1.8; font-family: sans-serif; text-align:center; padding: 20px;">
                 <p style="margin-bottom:0;">本作品は個人制作のファンゲームであり、非営利・無料で公開しております。<br>使用した素材には、AI生成コンテンツが含まれています。</p>
-                <p id="boot-preload-status" role="status" aria-live="polite" style="margin:18px 0 0; color:#9fdcff; font-weight:700; letter-spacing:.08em;">ゲームデータを読み込んでいます…</p>
             </div>
+        </div>
+        <div id="boot-loading-panel">
+            <p id="boot-preload-status" role="status" aria-live="polite">ファイルを読み込み中…</p>
+            <p id="boot-preload-count"></p>
+            <div id="boot-preload-progress" role="progressbar" aria-label="素材読み込み" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" hidden></div>
+            <button id="boot-retry" type="button" hidden>再読み込み</button>
         </div>
     </div>
 
@@ -150,6 +170,7 @@
                 <div class="cfg-sidebar-note">
                     <span>DDD CONFIGURATION</span>
                     <p>ルール設定は次の対戦開始時から反映されます。</p>
+                    <p>オンライン対戦は部屋側の固定ルールを使用します。</p>
                 </div>
             </aside>
 
@@ -318,8 +339,8 @@
                         <div class="cfg-compact-heading"><span>DUEL END IMPACT</span><strong>決着攻撃演出</strong></div>
                         <p class="cfg-rule-note">勝敗が確定する最後の一撃だけ、ヒットストップとスローモーションを再生します。</p>
                         <div class="cfg-segmented-control cfg-ddd-final-attack-modes" role="group" aria-label="決着攻撃演出">
-                            <button type="button" data-ddd-final-attack-mode="normal">標準<small>0.12 + 0.43 SEC</small></button>
-                            <button type="button" data-ddd-final-attack-mode="short">短縮<small>0.06 + 0.14 SEC</small></button>
+                            <button type="button" data-ddd-final-attack-mode="normal">標準<small>0.08 + 1.00 SEC</small></button>
+                            <button type="button" data-ddd-final-attack-mode="short">短縮<small>0.04 + 0.55 SEC</small></button>
                             <button type="button" data-ddd-final-attack-mode="off">演出なし<small>INSTANT</small></button>
                         </div>
                     </section>
@@ -400,8 +421,37 @@
                 </div>
 
                 <div id="cfg-tab-controls" class="cfg-tab-pane" role="tabpanel">
-                    <div class="cfg-pane-heading"><span>CONTROL</span><h2>操作</h2><p>ADV進行とマウスカーソルの挙動を設定します。</p></div>
+                    <div class="cfg-pane-heading"><span>CONTROL</span><h2>操作</h2><p>キーボード・ゲームパッドとADVの操作を設定します。変更は「適用」で保存されます。</p></div>
                     <div class="cfg-settings-grid">
+                        <section class="cfg-settings-card cfg-input-card">
+                            <div class="cfg-compact-heading"><span>KEYBOARD</span><strong>キー割り当て</strong></div>
+                            <p class="cfg-input-help">変更したいキー欄を選び、割り当てるキーを押してください。各操作に3個まで登録できます。×で追加の割り当てを外せます。Shift＋「次のボタン」のキーで逆順に選択します。</p>
+                            <div id="cfg-key-bindings"></div>
+                            <p class="cfg-input-feedback" id="cfg-key-feedback" role="status" aria-live="polite">入力する文字・左右の修飾キー・テンキーも個別に設定できます。</p>
+                            <button type="button" class="cfg-reset-btn" id="cfg-key-capture-cancel" hidden>キー変更を取り消す</button>
+                            <button type="button" class="cfg-reset-btn" id="cfg-keys-reset">キー割り当てを初期値に戻す</button>
+                        </section>
+                        <section class="cfg-settings-card cfg-input-card">
+                            <div class="cfg-compact-heading"><span>GAMEPAD</span><strong>ゲームパッド</strong></div>
+                            <label class="cfg-check-line"><input type="checkbox" id="cfg-gamepad-enabled" checked><span>ゲームパッド操作を有効にする</span></label>
+                            <p class="cfg-input-help" id="cfg-gamepad-status" role="status">未接続</p>
+                            <dl class="cfg-pad-guide">
+                                <div><dt>十字キー / 左スティック</dt><dd>画面の方向にマス・ボタンを選択。設定は左右で値を変更、上下で項目を移動。</dd></div>
+                                <div><dt>A / ×・B / ○</dt><dd>決定・戻る（Xbox / PlayStationの配置）</dd></div>
+                                <div><dt>RB / R1・LB / L1</dt><dd>次・前の操作エリアへ移動。対戦ではダイス・盤面・操作ボタンを切替。</dd></div>
+                                <div><dt>Y / △・X / □</dt><dd>モンスター選択後は攻撃・効果。配置中は展開図を回転・反転。</dd></div>
+                                <div><dt>RT / R2・LT / L2</dt><dd>配置中は次・前の展開図。配置時以外はRT / R2長押しで演出×2。</dd></div>
+                                <div><dt>左スティック押し込み</dt><dd>押している間、演出・ADVを早送り。対戦画面の「演出×2」ボタンで倍速のON/OFFも変更できます。</dd></div>
+                                <div><dt>右スティック押し込み</dt><dd>ADVのオートを切替</dd></div>
+                                <div><dt>右スティック上下</dt><dd>対戦中のモンスター詳細・効果文をスクロール。</dd></div>
+                                <div><dt>View / SHARE・START / OPTIONS</dt><dd>対戦ではユニット詳細・戻る。ADVではバックログ・戻る（△でもバックログ）。</dd></div>
+                            </dl>
+                            <p class="cfg-input-help">標準配置のゲームパッドに対応。文字入力にはキーボードを使います。</p>
+                        </section>
+                        <section class="cfg-settings-card cfg-input-card">
+                            <div class="cfg-compact-heading"><span>MOUSE</span><strong>マウスホイール</strong></div>
+                            <p class="cfg-input-help">ダイスの配置中、盤面上でホイールを下に回すと次の展開図、上に回すと前の展開図に切り替わります。ホイールをクリックすると90度回転します。</p>
+                        </section>
                         <section class="cfg-settings-card">
                             <div class="cfg-compact-heading"><span>SKIP</span><strong>スキップモード</strong></div>
                             <label class="cfg-check-line"><input type="checkbox" id="cfg-check-skip-effect" checked><span>演出をカットして高速化</span></label>
@@ -1205,7 +1255,6 @@
         }, 1800);
     };
 </script>
-</div> <!-- End app-wrapper -->
-
+</div> <!-- End app-wrapper -->
 </body>
 </html>
